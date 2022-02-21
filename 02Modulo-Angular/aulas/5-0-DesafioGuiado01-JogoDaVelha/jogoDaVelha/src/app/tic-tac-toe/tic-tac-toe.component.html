@@ -1,6 +1,9 @@
+<h2>Código antigo de maneira mais básica</h2>
+
 <p>Jogador atual : {{ currentPlayer }}</p>
 <p>Vencedor : {{ winner }}</p>
 <p><button (click)="reset()">Reiniciar partida</button></p>
+
 <table>
   <tr>
     <td (click)="processPlay(0, 0)">{{ board[0][0] }}</td>
@@ -16,5 +19,21 @@
     <td (click)="processPlay(2, 0)">{{ board[2][0] }}</td>
     <td (click)="processPlay(2, 1)">{{ board[2][1] }}</td>
     <td (click)="processPlay(2, 2)">{{ board[2][2] }}</td>
+  </tr>
+</table>
+
+<br />
+
+<h2>Código novo usando diretivas</h2>
+
+<p *ngIf="!winner">Jogador atual : {{ currentPlayer }}</p>
+<p *ngIf="winner">Vencedor : {{ winner }}</p>
+<p><button (click)="reset()">Reiniciar partida</button></p>
+
+<table>
+  <tr *ngFor="let row of [0, 1, 2]">
+    <td *ngFor="let col of [0, 1, 2]" (click)="processPlay(row, col)">
+      {{ board[row][col] }}
+    </td>
   </tr>
 </table>
